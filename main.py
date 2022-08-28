@@ -120,5 +120,5 @@ for user_info in data:
     res = wm.send_template(user_id, template_id, data,'https://froan.cn')
     print(res)
     num += 1
-res = wm.send_text('oEqYm6sOo2VdJdl4dGh40OrYYrKM', f'共计分发{num}卡片信息')
+res = wm.send_text('ouW245ju687vQgNjKM147C3HGN-s', f'共计分发{num}卡片信息')
 print(res)
