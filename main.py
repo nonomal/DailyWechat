@@ -166,4 +166,4 @@ for user_info in data:
     res = wm.send_template(user_id, template_id, data)
     print(res)
     num += 1
-print(res)
+print(f'共计分发{num}个用户')
