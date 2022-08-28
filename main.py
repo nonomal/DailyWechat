@@ -31,13 +31,26 @@ def get_words():
 def get_random_color():
     return "#%06x" % random.randint(0, 0xFFFFFF)
 
+def get_ciba():
+    try:
+        url = "http://open.iciba.com/dsapi/"
+        headers = {
+            'Content-Type': 'application/json',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) '
+                        'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36'
+        }
+        r = get(url, headers=headers)
+        note_en = r.json()["content"]
+        note_ch = r.json()["note"]
+        return (note_en,note_ch)
+    except:
+        return ("词霸API调取错误")
 
 def get_weather(city):
     url = "https://v0.yiketianqi.com/api?unescape=1&version=v91&appid=43656176&appsecret=I42og6Lm&city=" + city
     res = requests.get(url).json()
     weather = res['data'][0]
     return weather
-
 
 def get_count(born_date):
     delta = today - datetime.strptime(born_date, "%Y-%m-%d")
@@ -64,9 +77,9 @@ for user_info in data:
     city = user_info['city']
     user_id = user_info['user_id']
     name=' 【'+user_info['user_name'].upper()+'】 '
-    
+    note_ch, note_en = get_ciba()    
     weather= get_weather(city)
-#, , ,,,,
+    
     data = dict()
     data['time'] = {
         'value': get_time(), 
@@ -112,10 +125,43 @@ for user_info in data:
         'value': name, 
         'color': get_random_color()
         }
-    data['uv'] = {
-        'value': weather['uvDescription'], 
+    data['name'] = {
+        'value': name, 
         'color': get_random_color()
         }
+    data['name'] = {
+        'value': name, 
+        'color': get_random_color()
+        }
+    data['name'] = {
+        'value': name, 
+        'color': get_random_color()
+        }
+    data['name'] = {
+        'value': name, 
+        'color': get_random_color()
+        }
+    data['name'] = {
+        'value': name, 
+        'color': get_random_color()
+        }
+    data['name'] = {
+        'value': name, 
+        'color': get_random_color()
+        }
+    data['name'] = {
+        'value': name, 
+        'color': get_random_color()
+        }
+    data['ne'] = {
+            "value": note_en,
+            "color": get_random_color()
+        },
+    data['nc'] = {
+            "value": note_ch,
+            "color": get_random_color()
+        }
+
     
     res = wm.send_template(user_id, template_id, data)
     print(res)
