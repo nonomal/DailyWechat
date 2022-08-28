@@ -117,7 +117,7 @@ for user_info in data:
         'color': get_random_color()
         }
     
-    res = wm.send_template(user_id, template_id, data,'https://froan.cn')
+    res = wm.send_template(user_id, template_id, data)
     print(res)
     num += 1
 print(res)
